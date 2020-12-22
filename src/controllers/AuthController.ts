@@ -12,10 +12,12 @@ export default {
 
 
   async authenticate( request: Request, response: Response ) {
+
     const repository = getRepository(Users);
 
     const { email, password} = request.body;
-    
+
+  
 
      const users = await repository.findOne({ where:{email} });
 
@@ -30,7 +32,7 @@ export default {
        return response.sendStatus(401);
      }
 
-     const token = jwt.sign({ id: users.id}, 'secret', { expiresIn: '1d'});
+     const token = jwt.sign({ id: users.id,master:users.master}, 'secret', { expiresIn: '1d'});
 
      return response.json({
        users,

@@ -29,6 +29,8 @@ export default {
       combustivel,
      });
      await embarcacoeslanchaRepository.save(embarcacoeslancha);
+
+     console.log(request.useMaster)
     
      return response.status(201).json(embarcacoeslancha);
   }

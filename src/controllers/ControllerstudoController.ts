@@ -1,4 +1,3 @@
-
 import { Request, Response } from 'express'
 import { getRepository } from 'typeorm';
 import Users from '../models/Users';
@@ -18,6 +17,7 @@ export default {
       email,
       password,
       phone,
+      employee,
     } = request.body;
 
  
@@ -27,16 +27,18 @@ export default {
       return response.sendStatus(401);
     }
 
+    if(!request.useMaster){
+      return response.status(401).json({error: "Somente Adminstradores podem criar esse tipo de usuario!"})
+    }
 
     const data = {
 
       name,
-      master:true,
-      employee:false,
       email,
       password,
       phone,
-
+      employee,
+      master:false,
     }
 
 
@@ -45,6 +47,7 @@ export default {
       email: Yup.string().required('email obrigatório'),
       password: Yup.string().required('senha obrigatório').max(6),
       phone: Yup.string().required('celular obrigatório'),
+      employee: Yup.boolean().required("Cargo obrigatório")
     });
 
 
@@ -144,4 +147,3 @@ export default {
 
   }
 };
-

@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 interface TokenPayload{
   id: string;
+  master: boolean;
   iat: number;
   exp: number;
 }
@@ -13,7 +14,9 @@ interface TokenPayload{
 export default function authMiddleware(request: Request, response: Response, next: NextFunction){
 
 const { authorization } = request.headers;
- 
+
+
+
  if( !authorization ){
    return response.sendStatus(401);
  }
@@ -22,8 +25,9 @@ const { authorization } = request.headers;
 
  try{
       const data = jwt.verify(token, 'secret');
-      const { id } = data as TokenPayload;
+      const { id,master } = data as TokenPayload;
       request.usersId = id;
+      request.useMaster = master
       return next();
  } catch{
   return response.sendStatus(401);

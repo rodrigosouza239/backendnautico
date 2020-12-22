@@ -13,6 +13,14 @@ export default class Users{
   email: string;
 
   @Column()
+  master:boolean;
+
+
+  @Column()
+  employee:boolean;
+
+
+  @Column()
   password: string;
 
 

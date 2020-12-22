@@ -3,7 +3,8 @@ import { MigrationInterface, QueryRunner,Table } from "typeorm";
 export class createUsers1607981150313 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        //criação da minha tabelas do banco de dados 
+
+        //criação da minha do master tabelas do banco de dados 
         await queryRunner.createTable(new Table({
             name : 'users',
             columns: [
@@ -14,6 +15,14 @@ export class createUsers1607981150313 implements MigrationInterface {
                    isPrimary: true, 
                    isGenerated: true,
                    generationStrategy: 'increment',
+                },
+                {
+                    name: 'master',
+                    type: 'boolean',
+                },
+                {
+                    name: 'employee',
+                    type: 'boolean'
                 },
                 {
                     name: 'name',
@@ -33,8 +42,7 @@ export class createUsers1607981150313 implements MigrationInterface {
                     type: 'varchar'
                 },
             ]
-        }))
-
+        }));
         //fechamento da coluna
     }
 
