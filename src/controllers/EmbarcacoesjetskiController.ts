@@ -18,6 +18,10 @@ export default {
     
      const embarcacoesjetskiRepository = getRepository(Embarcacoesjetski);
     
+     if(!request.useMaster){
+      return response.status(401).json({error: "Somente Adminstradores podem criar embarcações!"})
+     }
+    
      const embarcacoesjetski = embarcacoesjetskiRepository.create({
       name,
       proprietario,
