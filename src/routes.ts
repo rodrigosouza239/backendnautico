@@ -21,15 +21,15 @@ routes.post('/auth',authMiddleware, AuthController.authenticate);
 routes.post('/login', UsersController.login);
 routes.post('/function',authMiddleware,ControllertudoController.create);
 routes.post('/embarcacoes',authMiddleware, EmbarcacoeslanchaController.create);
-routes.post('/embarcacoesjet', EmbarcacoesjetskiController.create);
-routes.post('/avariaslancha', AvariaslanchaController.create);
-routes.post('/avariasjetski', AvariasjetskiController.create);
-routes.post('/achadoslancha', AchadoslanchaController.create);
-routes.post('/achadosjetskip', AchadosjetskipController.create);
-routes.post('/revisaolancha', RevisaolanchaController.create);
-routes.post('/revisaojet', RevisaojetController.create);
-routes.post('/agendamento',AgendamentoController.create);
-routes.post('/forgot',UsersController.forgotPassword);
+routes.post('/embarcacoesjet',authMiddleware, EmbarcacoesjetskiController.create);
+routes.post('/avariaslancha', authMiddleware, AvariaslanchaController.create);
+routes.post('/avariasjetski', authMiddleware, AvariasjetskiController.create);
+routes.post('/achadoslancha', authMiddleware, AchadoslanchaController.create);
+routes.post('/achadosjetskip', authMiddleware, AchadosjetskipController.create);
+routes.post('/revisaolancha', authMiddleware, RevisaolanchaController.create);
+routes.post('/revisaojet', authMiddleware, RevisaojetController.create);
+routes.post('/agendamento', authMiddleware,AgendamentoController.create);
+routes.post('/forgot', authMiddleware, UsersController.forgotPassword);
 
 
 export default routes;
