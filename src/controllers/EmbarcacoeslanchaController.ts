@@ -18,6 +18,10 @@ export default {
     
      const embarcacoeslanchaRepository = getRepository(Embarcacoeslancha);
     
+    if(!request.useMaster){
+      return response.status(401).json({error: "Somente Adminstradores podem criar embarcações!"})
+    }
+    
      const embarcacoeslancha = embarcacoeslanchaRepository.create({
       name,
       proprietario,
